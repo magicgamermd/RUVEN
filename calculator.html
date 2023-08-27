@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резултати от Калкулатора</title>
+    <link rel="stylesheet" href="styleC.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Стилове, скриптове и други ресурси могат да бъдат включени тук -->
+</head>
+<body>
+   
+    <div class="price-container">
+        <h2>Вашата цена е:</h2>
+        <div id="price-output">0</div> <!-- Първоначална стойност 0, която може да бъде променена чрез JavaScript -->
+        <div id="vat-message"></div> <!-- Място за съобщението за ДДС -->
+    </div>
+    <!-- Съдържанието на вашата страница идва тук -->
+    <button id="edit-button">Коригирай</button>
+    <button id="submit-button">Изпрати заявка</button>
+
+
+    <div class="data-container">
+        <div class="header">
+            <div class="label">Транспорт от:</div>
+            <div class="calculator-output" id="data-output-address1"></div>
+        </div>
+        <div class="header">
+            <div class="label">Транспорт до:</div>
+            <div class="calculator-output" id="data-output-address2"></div>
+        </div>
+        
+        <div class="header">
+            <div class="label">Година:</div>
+            <div class="calculator-output" id="data-output-year"></div>
+        </div>
+
+        <div class="header">
+            <div class="label">Марка:</div>
+            <div class="calculator-output" id="data-output-brand"></div>
+        </div>
+        
+        <div class="header">
+            <div class="label">Модел:</div>
+            <div class="calculator-output" id="data-output-car-models"></div>
+        </div>
+
+    
+        <div class="header">
+            <div class="label">Цена на Автомобила:</div>
+            <div class="calculator-output" id="data-output-car-value"></div>
+        </div>
+
+        <div class="question">
+            <label>Технически изправен ли е автомобилът:</label>
+            <input type="radio" name="drone" value="yes" id="technical-yes">
+            <label for="technical-yes">да</label>
+            <input type="radio" name="drone" value="no" id="technical-no">
+            <label for="technical-no">не</label>
+        </div>
+
+        <div class="question">
+            <label>Желаете ли карго застраховка?</label>
+            <input type="radio" name="insurance" value="yes" id="insurance-yes">
+            <label for="insurance-yes">да</label>
+            <input type="radio" name="insurance" value="no" id="insurance-no">
+            <label for="insurance-no">не</label>
+        </div>
+        
+        
+        
+        <div class="question">
+    <label>Вие сте:</label>
+    <input type="radio" name="person" value="yes" id="yes-person">
+    <label for="yes-person">Физическо лице</label><br>
+    <input type="radio" name="person" value="no" id="no-person">
+    <label for="no-person">Юридическо лице</label>
+</div>
+
+
+
+        <div class="header">
+            <div class="label">Имейл:</div>
+            <div class="calculator-output" id="data-output-email"></div>
+        </div>
+
+        <div class="header">
+            <div class="label">Телефон:</div>
+            <div class="calculator-output" id="data-output-phone"></div>
+        </div>
+</div>
+
+    <script src="scriptC.js"></script>
+
+</body>
+</html>

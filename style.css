@@ -1,0 +1,490 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    
+}
+
+
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+
+
+.calculator-steps {
+    text-align: center;
+    padding-bottom: 50px;
+    
+}
+
+.calculator-steps .step {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 15px;
+    border-radius: 30px;
+    background-color: #ddd;
+    color: #000000;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px; /* Made the text smaller */
+}
+
+
+input#phone {
+    display: block;
+    width: 85%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid #716e6e;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    background-color: #F2F2F2; /* Light background color */
+    z-index: 2; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    
+    top: 5px;
+    
+}
+div.iti__selected-flag {
+    border-radius: 12px 0 0 12px; /* заобляне само горния ляв и долния ляв ъгъл */
+    line-height: 28px; /* коригира вертикалното центриране на флага */
+    margin-top: 5px;
+    margin-left: 10px; /* малко разстояние от левия край на инпута */
+    z-index: 3; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    
+}
+
+.calculator-steps .step.active {
+    background-color: #c90d0d;
+    color: #000000;
+}
+
+.calculator-step {
+    display: none;
+    margin-bottom: 20px;
+    background-color: #140a47;
+    background-image: url('back.jpg');
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Made the step div smaller */
+    margin: 0 auto; /* Centering the step div */
+    position: relative;
+}
+
+.calculator-step::before {
+    content: ""; /* Необходимо за псевдо-елементите */
+    display: block;
+    width: 200px; /* Широчина на малкия правоъгълник */
+    height: 30px; /* Височина на малкия правоъгълник */
+    background-color: #140a47; /* Същият цвят като основния фон */
+     background-image: url('back.jpg');/* Центрира логото */
+    border-radius: 5px 5px 0 0; /* Заобля само горните ъгли */
+    position: absolute; /* Позиционира псевдо-елемента спрямо .calculator-step */
+    top: -30px; /* Премества псевдо-елемента нагоре */
+    left: 50%; /* Центрира псевдо-елемента хоризонтално */
+    transform: translateX(-50%); /* Финално центриране */
+}
+
+.calculator-step::after {
+    content: ""; /* Необходимо за псевдо-елементите */
+    display: block;
+    width: 100px; /* Широчина на логото */
+    height: 50px; /* Височина на логото */
+    background-image: url('logo.svg'); /* Пътят до вашето лого */
+    background-size: contain; /* За да се побере логото в рамките на зададените размери */
+    background-repeat: no-repeat; /* За да не се повтаря логото */
+    background-position: center; /* Центрира логото */
+    position: absolute; /* Позиционира псевдо-елемента спрямо .calculator-step */
+    top: -27px; /* Разстояние от горната част на .calculator-step */
+    left: 50%; /* Центрира псевдо-елемента хоризонтално */
+    transform: translateX(-50%); /* Финално центриране */
+}
+
+
+.calculator-step.active {
+    display: block;
+}
+
+.label-input {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 110px;  /* Увеличава долния padding */
+    padding-right: 201px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 12px;
+    margin-top: 10px;
+    left: 1px
+}
+.label-input1 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 235px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 12px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input2 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 193px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 15px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input3 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 250px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 17px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input4 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 249px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 19px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input5 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 160px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 19px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input6 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 180px;  /* Увеличава долния padding */
+    padding-right: 160px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 19px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.intltelinput input[type="tel"] {
+    border-radius: 15px !important;
+    
+}
+
+
+.form-input {
+    display: block;
+    width: 85%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid #716e6e;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    background-color: #F2F2F2; /* Light background color */
+    z-index: 2; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 5px;
+}
+
+.form-input.has-value {
+    background-image: url('location-icon.png');
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-left: 30px; /* Увеличете тази стойност според нуждите си */
+}
+
+.form-input7 {
+    display: block;
+    width: 85%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid #716e6e;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    background-color: #F2F2F2; /* Light background color */
+    z-index: 2; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 5px;
+}
+
+.form-input8 {
+    display: block;
+    width: 85%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid #716e6e;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    background-color: #F2F2F2; /* Light background color */
+    z-index: 2; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 5px;
+}
+
+
+.form-input8::after {
+    content: ""; /* Необходимо за псевдо-елементите */
+    display: block;
+    width: 20px; /* Широчина на иконата */
+    height: 20px; /* Височина на иконата */
+    background-image: url('euro-icon.png'); /* Пътят до вашата икона */
+    background-size: contain; /* За да се побере иконата в рамките на зададените размери */
+    background-repeat: no-repeat; /* За да не се повтаря иконата */
+    background-position: center; /* Центрира иконата */
+    position: absolute; /* Позиционира псевдо-елемента спрямо .form-input8 */
+    top: 50%; /* Центрира псевдо-елемента вертикално */
+    right: 10px; /* Разстояние от дясната страна на .form-input8 */
+    transform: translateY(-50%); /* Финално вертикално центриране */
+}
+
+
+.form-input1 {
+    display: block;
+    width: 90%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid #716e6e;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    background-color: #F2F2F2; /* Light background color */
+    z-index: 2; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 10px
+}
+
+.radio-group {
+    background: white;
+    background-image: url('text.jpg');
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group input[type="radio"] + label:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.radio-group input[type="radio"]:checked + label:before {
+    border: 2px solid red; /* Червен бордър */
+    background: radial-gradient(white 10%, red 90%); /* Бял бордър вътре, който преходва към червен */
+}
+
+.textgroup {
+    background: white;
+    background-image: url('text.jpg');
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+
+.form-input6 {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid #716e6e;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    background-color: #F2F2F2; /* Light background color */
+    z-index: 2; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 5px;
+    left: 10px;
+}
+
+
+
+.label-container {
+        margin-bottom: 10px; /* Разстояние между текста на етикета и радио бутоните */
+    }
+    .info-icon {
+        vertical-align: middle; /* Подравняване на иконата с текста */
+        height: 14px; /* Височина на иконата */
+    }
+
+
+    .form-button {
+    display: block; /* Промяна от inline-block на block, за да позволите на бутона да заеме цялата ширина */
+    padding: 10px 5%; /* Процентно отстояние отляво и отдясно */
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #c71818;
+    background-image: url('butt.jpg');
+    color: #ffffff;
+    text-decoration: none;
+    margin-top: 10px;
+    text-align: center;
+    width: 90%; /* Ширината на бутона е 90% от родителския елемент */
+    margin-left: auto; /* Центрира бутона в родителския му елемент */
+    margin-right: auto;
+    user-select: none;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #f5f5f5;
+    background-image: url('text1.jpg');
+}
+
+
+
+.form-button:hover {
+    background-color: #ff0000f9; /* Lighter Red */
+}
+
+.form-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: red;
+    display: none;
+}
+
+#result {
+    border: 1px solid black; 
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center; 
+    background-color: #e6e6e6; 
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+.info-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.info-icon {
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+}
+
+.custom-tooltip {
+  position: absolute;
+  left: -200px;
+  top: 0;
+  max-width: 180px; /* Максимална ширина, която ще управлява размера на балончето */
+  padding: 10px;
+  background-color: #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: normal; /* Този стил ще позволи на текста да се сгъне на нов ред */
+  z-index: 3; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+  top: -60px;
+}
+
+.info-icon-wrapper:hover .custom-tooltip {
+  opacity: 1;
+}
+
+#year::before {
+    content: 'Изберете Година:';
+    color: #999;
+    display: inline-block;
+    position: absolute; /* or relative */
+    pointer-events: none;
+}
+
+#year:focus::before,
+#year:valid::before {
+    display: none;
+}

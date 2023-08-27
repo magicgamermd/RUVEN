@@ -1,0 +1,167 @@
+
+.price-container {
+    width: 350px; /* или друга широчина, която ви устройва */
+    height: 200px;
+    padding: 60px;
+    background-color: white;
+    border: 3px solid red;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* сянка отзад */
+   position: absolute;
+    margin-right: 2%; 
+    left: 10%; /* разстояние от лявата страна */
+    top: 20%; /* центриране вертикално */
+    transform: translateY(-50%); /* финално вертикално центриране */
+    display: flex; /* използване на flexbox за центриране на елементите */
+    flex-direction: column; /* ориентация на елементите */
+    align-items: center; /* центриране на елементите хоризонтално */
+    justify-content: center; /* центриране на елементите вертикално */
+    border-radius: 15px; /* Заобля крайщата на контейнера */
+    padding-top: 10px;
+    background-image: url('price.png'); /* пътят до изображението */
+    background-size: cover; /* изображението ще покрие целия контейнер */
+    background-repeat: no-repeat; /* изображението няма да се повтаря */
+    background-position: center; /* центрира изображението */
+}
+
+.price-container h2 {
+    margin-top: 35px; /* Променете стойността според вашите предпочитания */
+}
+
+
+#price-output {
+    font-size: 2em; /* увеличаване на размера на шрифта */
+    margin-bottom: 5px;
+}
+
+span {
+    font-size: 1.5em; /* увеличаване на размера на шрифта за EURO */
+}
+
+
+
+.data-container {
+    width: 450px;
+    height: 900px;
+    padding: 20px;
+    background-color: #E0E0E0; /* Сив цвят */
+    position: absolute;
+    right: 13%; /* Позициониране от дясната страна на страницата */
+    top: 50%; 
+    transform: translateY(-40%); 
+    margin-top: max(0px, (5% - 100px)); /* Половината от височината на контейнера */
+    margin-bottom: max(0px, (5% - 250px)); /* Половината от височината на контейнера */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Подравняване на съдържанието вляво */
+    justify-content: flex-start; /* Подравняване на съдържанието отгоре */
+    border-radius: 15px;
+    font-family: "Вашият шрифт тук", sans-serif; /* Примерен шрифт */
+    font-size: 1em;
+}
+
+#data-output {
+    font-size: 1em;
+    margin-top: 0; /* Ако искате да премахнете допълнителния отстъп отгоре */
+    align-self: flex-start; /* Подравняване вляво, ако е необходимо */
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Разпределение на пространството между двата div елемента */
+    width: 100%; /* Заема цялата ширина на контейнера */
+    align-items: center; /* Центрира елементите вертикално */
+    border-top: 2px solid black; /* Черна линия отгоре */
+    padding-top: 20px; /* Отстъп от линията до съдържанието */
+    margin-bottom: 20px; /* Добавя отстъп между двете секции */
+}
+
+.label {
+    /* Стилове за текста "Транспорт от:" */
+    font-size: 1em;
+    font-weight: bold; /* Ако искате текстът да бъде по-дебел */
+}
+
+.calculator-output {
+    /* Стилове за полето, в което ще се зарежда информацията от калкулатора */
+    font-size: 1.1em;
+    color: #ff0000;
+    padding: 5px 10px; /* Отстъпи около текста */
+    border-radius: 5px; /* Заоблени ъгли */
+    margin-right: 25px; /* Добавяне на допълнителен отстъп от дясната страна */
+}
+
+
+.question {
+    margin-top: 20px;
+    display: flex;
+    align-items: center; /* Центрира елементите вертикално */
+    flex-wrap: wrap; /* Ако елементите не се побират на един ред, ще преминат на следващия */
+    border-top: 2px solid black; /* Черна линия отгоре */
+    padding-top: 20px; /* Отстъп от линията до съдържанието */
+    margin-bottom: 20px; /* Добавя отстъп между двете секции */
+}
+
+.question label {
+    margin-right: 10px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.question input[type="radio"] {
+    margin: 0 5px;
+}
+
+
+#edit-button, #submit-button {
+    background-color: red; /* Червен фон */
+    color: white; /* Бял текст */
+    padding: 10px 20px; /* Отстъпи около текста */
+    border: none; /* Премахва стандартния бордър */
+    border-radius: 10px; /* Заоблени ъгли */
+    font-size: 1.2em; /* Увеличава размера на шрифта */
+    cursor: pointer; /* Променя курсора при навеждане */
+    transition: background-color 0.3s; /* Добавя анимация при промяна на фона */
+    margin-top: 300px; /* Отстъп отгоре */
+    margin-left: 150px; /* Отстъп отляво */
+}
+
+#edit-button:hover, #submit-button:hover {
+    background-color: darkred; /* По-тъмно червен фон при навеждане */
+}
+
+#price-output {
+    font-size: 3.5em; /* Увеличава размера на шрифта */
+    color: green; /* Зелен цвят на текста */
+}
+
+.price-container {
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .price-container, .data-container {
+        width: 90%; /* Променя широчината на контейнерите */
+        position: relative; /* Премахва абсолютното позициониране */
+        left: 0; /* Премахва отместването от лявата страна */
+        top: 0; /* Премахва отместването отгоре */
+        transform: none; /* Премахва трансформацията */
+        margin: 20px auto; /* Добавя отстъп отгоре и отдолу и центрира контейнерите */
+    }
+
+    #edit-button, #submit-button {
+        margin-top: 20px; /* Намалява отстъпа отгоре */
+        margin-left: 0; /* Премахва отстъпа отляво */
+        display: block; /* Прави бутоните да се показват един под друг */
+        width: 100%; /* Бутоните заемат цялата широчина на контейнера */
+        text-align: center; /* Центрира текста в бутоните */
+    }
+}
+
+@media (min-width: 769px) {
+    .price-container {
+        width: 500px; /* или друга широчина, която ви устройва */
+        height: 250px; /* или друга широчина, която ви устройва */
+        /* Можете да добавите и други стилове тук, ако искате */
+    }
+}

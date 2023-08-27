@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <style>
+               body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.calculator-steps {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.calculator-steps .step {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 15px;
+    border-radius: 30px;
+    background-color: #ddd;
+    color: #000000;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px; /* Made the text smaller */
+}
+
+.calculator-steps .step.active {
+    background-color: #c90d0d;
+    color: #000000;
+}
+
+.calculator-step {
+    display: none;
+    margin-bottom: 20px;
+    background-color: #140a47;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Made the step div smaller */
+    margin: 0 auto; /* Centering the step div */
+}
+
+.calculator-step.active {
+    display: block;
+}
+
+.label-input {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 110px;  /* Увеличава долния padding */
+    padding-right: 201px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 12px;
+    margin-top: 10px;
+    left: 1px
+}
+.label-input1 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 235px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 12px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input2 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 193px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 15px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input3 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 250px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 17px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input4 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 249px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 19px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input5 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 50px;  /* Увеличава долния padding */
+    padding-right: 160px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 19px;
+    margin-top: 10px;
+    left: 1px
+}
+
+.label-input6 {
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 180px;  /* Увеличава долния padding */
+    padding-right: 160px;  /* Увеличава левия padding */
+    border-radius: 5px;
+    z-index: 1; /* Намаляваме стойността на z-index, за да го поставим под другите елементи */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 19px;
+    margin-top: 10px;
+    left: 1px
+}
+
+
+
+.form-input {
+    display: block;
+    width: 85%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid #716e6e;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    background-color: #F2F2F2; /* Light background color */
+    z-index: 2; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 5px;
+}
+.form-input1 {
+    display: block;
+    width: 90%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid #716e6e;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    background-color: #F2F2F2; /* Light background color */
+    z-index: 2; /* Увеличаваме стойността на z-index, за да поставим елемента над другите */
+    position: relative; /* z-index работи само с позиционирани елементи */
+    top: 10px
+}
+
+.radio-group {
+    background: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-group input[type="radio"] + label:before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.radio-group input[type="radio"]:checked + label:before {
+    border: 2px solid red; /* Червен бордър */
+    background: radial-gradient(white 10%, red 90%); /* Бял бордър вътре, който преходва към червен */
+}
+
+.textgroup {
+    background: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.label-container {
+        margin-bottom: 10px; /* Разстояние между текста на етикета и радио бутоните */
+    }
+    .info-icon {
+        vertical-align: middle; /* Подравняване на иконата с текста */
+        height: 14px; /* Височина на иконата */
+    }
+
+
+    .form-button {
+    display: block; /* Промяна от inline-block на block, за да позволите на бутона да заеме цялата ширина */
+    padding: 10px 5%; /* Процентно отстояние отляво и отдясно */
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #c71818;
+    color: #ffffff;
+    text-decoration: none;
+    margin-top: 10px;
+    text-align: center;
+    width: 90%; /* Ширината на бутона е 90% от родителския елемент */
+    margin-left: auto; /* Центрира бутона в родителския му елемент */
+    margin-right: auto;
+}
+
+
+
+
+
+.form-button:hover {
+    background-color: #ff0000f9; /* Lighter Red */
+}
+
+.form-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: red;
+    display: none;
+}
+
+#result {
+    border: 1px solid black; 
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center; 
+    background-color: #e6e6e6; 
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.info-icon {
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+}
+
+.custom-tooltip {
+  position: absolute;
+  left: -200px;
+  top: 0;
+  max-width: 180px; /* Максимална ширина, която ще управлява размера на балончето */
+  padding: 10px;
+  background-color: #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: normal; /* Този стил ще позволи на текста да се сгъне на нов ред */
+  top: -40px;
+}
+
+.info-icon-wrapper:hover .custom-tooltip {
+  opacity: 1;
+}
+
+#year::before {
+    content: 'Изберете Година:';
+    color: #999;
+    display: inline-block;
+    position: absolute; /* or relative */
+    pointer-events: none;
+}
+
+#year:focus::before,
+#year:valid::before {
+    display: none;
+}
+
+
+            </style>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+        </head>
+    <body>
+        <div class="calculator-steps">
+            <div class="step step-1 active">1. Място</div>
+            <div class="step step-2">2. Превозно средство</div>
+            <div class="step step-3">3. Доставка</div>
+        </div>
+    
+        <form id="cost-calculator-form">
+            <div class="calculator-step step step-1 active">
+                <div class="textgroup">
+                <label>Транспорт от:</label>
+                <input id="address1" class="form-input" type="text" placeholder="Въведете Адрес">
+                <small id="address1-error" class="error-message"></small>
+                <input type="number" id="postcode1" class="form-input" placeholder="Пощенски Код" name="postcode1">
+                <small id="postcode1-error" class="error-message"></small>
+            </div>
+            <div class="textgroup">
+                <label>Транспорт до:</label>
+                <input id="address2" class="form-input" type="text" placeholder="Въведете Адрес">
+                <small id="address2-error" class="error-message"></small>
+                <input type="number" id="postcode2" class="form-input" placeholder="Пощенски Код" name="postcode2">
+                <small id="postcode2-error" class="error-message"></small>
+            </div>
+            <div class="radio-group">
+                <div class="label-container">
+                  <label>Технически изправен ли е автомобилът:</label>
+                  <div class="info-icon-wrapper">
+                    <img src="infoicon.png" alt="Инфо" class="info-icon" />
+                    <div class="custom-tooltip">Пали ли ли и може ли да се качи на собствен ход?</div>
+                  </div>
+                </div>
+                <div class="options">
+                  <input type="radio" id="yes" name="drone" value="yes">
+                  <label for="yes">Да</label>
+                  <input type="radio" id="no" name="drone" value="no">
+                  <label for="no">Не</label>
+                  <small id="drone-error" class="error-message"></small>
+                </div>
+              </div>
+                <center><a class="form-button" id="next-step-1">Следващ</a></center>
+            </div>
+        
+            <div class="calculator-step step step-2">
+                <div class="textgroup">
+                <label for="year">Година на производство:</label>
+                <select id="year" class="form-input" name="year">
+                    <option value="" disabled selected hidden>Изберете Година:</option>
+                    <!-- Останалите опции ще бъдат добавени динамично от JavaScript -->
+                </select>
+                    <!-- Опциите ще бъдат добавени динамично от JavaScript -->
+                </select>
+                <small id="year-error" class="error-message"></small>
+            </div>
+            <div class="textgroup">
+                <label for="brand">Марка:</label>
+                <select id="brand" class="form-input" name="brand">
+                    <option value="" disabled selected hidden>Изберете Марка:</option>
+                    
+                    <!-- Опциите ще бъдат добавени динамично от JavaScript -->
+                </select>
+                <small id="brand-error" class="error-message"></small>
+            </div>
+            <div class="textgroup">
+                <label for="car-models">Модел:</label>
+                <select id="car-models" class="form-input" name="car-models">
+                    <option value="" disabled selected hidden>Изберете Модел:</option>
+                    <!-- Опциите ще бъдат добавени динамично от JavaScript -->
+                </select>
+                <small id="car-models-error" class="error-message"></small>
+             </div>
+             <div class="textgroup">
+                <label for="car-type">Категория:</label>
+                <select id="car-type" class="form-input" name="car-type">
+                    <option value="" disabled selected hidden>Изберете Категория:</option>
+                    <!-- Опциите ще бъдат добавени динамично от JavaScript -->
+                </select>
+                <small id="car-type-error" class="error-message"></small>
+               </div>
+                <center><a class="form-button" id="next-step-2">Следващ</a></center>
+            </div>
+        
+            <div class="calculator-step step step-3">
+                <div class="textgroup">
+                <label for="car-value">Цена на автомобил в евро:</label>
+                <input type="number" id="car-value" class="form-input" name="car-value">
+                <small id="car-value-error" class="error-message"></small>
+            </div>
+                
+            <div class="radio-group">
+                <div class="label-container">
+                  <label for="insurance">Имате включена ЧМР застраховка,<br>Желаете ли карго застраховка?</label>
+                  <div class="info-icon-wrapper">
+                    <img src="infoicon.png" alt="Инфо" class="info-icon">
+                    <div class="custom-tooltip">Цената на Карго застраховката е 0.25% от цената на Автомобила</div>
+                  </div>
+                </div>
+                <input type="radio" id="yes-insurance" name="insurance" value="yes">
+                <label for="yes-insurance">Да</label>
+                <input type="radio" id="no-insurance" name="insurance" value="no">
+                <label for="no-insurance">Не</label>
+                <small id="insurance-error" class="error-message"></small>
+              </div>
+            
+              <div class="radio-group">
+                <div class="label-container">
+                    <label for="person">Вие сте:</label>
+                </div>
+                <input type="radio" id="yes-person" name="person" value="yes">
+                <label for="yes-person">Физическо лице</label>
+                <input type="radio" id="no-person" name="person" value="no">
+                <label for="no-person">Юридическо лице</label>
+                <small id="person-error" class="error-message"></small>
+            </div>
+            <div class="textgroup">
+                <label for="email">Въведете вашия имейл:</label>
+                <input type="email" id="email" class="form-input" name="email">
+                <small id="email-error" class="error-message"></small>
+                </div>
+                <div class="textgroup">
+                <label for="phone">Телефонен номер:</label>
+<input type="tel" id="phone" class="form-input" name="phone" pattern="[+][0-9]{2}[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="+359888123456" oninput="validatePhone()"><br>
+<small id="phone-error" class="error-message"></small>
+</div>
+<small id="phoneHelp" class="form-text"></small>
+                
+                <center><a class="form-button" id="calculate-cost">Изчисли</a></center>
+            </div>
+        </form>
+        <center><div id="result"></div></center>
+       
+    
+        
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFig5ftdajFBTD5oBqNyjsZg6v8psUNJs&libraries=places"></script>
+<script type="text/javascript">
+    (async () => {
+    const response = await fetch(
+        'https://parseapi.back4app.com/classes/Carmodels_Car_Model_List?limit=10&keys=Model',
+        {
+            headers: {
+                'X-Parse-Application-Id': 'wNrPfl2rTC7txmHVwy91V3YiEEgwgrULo7doYPUJ', // This is your app's application id
+                'X-Parse-REST-API-Key': 'uhxFFBEOtj7zpY2C1SASrBGbAcJ2Hp1fF13VrILE', // This is your app's REST API key
+            }
+        }
+    );
+})();
+  </script>
+<script>
+
+function validateRadioButtons(name) {
+  const selectedRadio = document.querySelector(`input[name="${name}"]:checked`);
+  const errorElement = document.getElementById(`${name}-error`);
+  if (!selectedRadio) {
+    errorElement.textContent = 'Това поле е задължително!';
+    errorElement.style.display = 'block';
+    return false;
+  } else {
+    errorElement.style.display = 'none';
+    return true;
+  }
+}
+
+
+
+
+document.getElementById('next-step-1').addEventListener('click', function(e) {
+    const idsToCheck = ['address1', 'address2', 'postcode1', 'postcode2'];
+    const radioNamesToCheck = ['drone'];
+    if (validateFields(idsToCheck, radioNamesToCheck)) {
+        document.querySelector('.step.step-1.active').classList.remove('active');
+        document.querySelector('.calculator-step.step.step-1.active').classList.remove('active');
+        document.querySelector('.step.step-2').classList.add('active');
+        document.querySelector('.calculator-step.step.step-2').classList.add('active');
+    }
+});
+
+document.getElementById('next-step-2').addEventListener('click', function(e) {
+    // Проверка на стъпка 2
+    const idsToCheck = ['year', 'brand', 'car-models', 'car-type'];
+    if (validateFields(idsToCheck)) {
+        // Изпълнение на логиката от първия обработчик
+        document.querySelector('.step.step-2.active').classList.remove('active');
+        document.querySelector('.calculator-step.step.step-2.active').classList.remove('active');
+        document.querySelector('.step.step-3').classList.add('active');
+        document.querySelector('.calculator-step.step.step-3').classList.add('active');
+        
+        // Изпълнение на логиката от втория обработчик
+        changeStep(1);
+    }
+});
+
+
+document.getElementById('calculate-cost').addEventListener('click', function(e) {
+  // Проверка само за стъпка 3
+  const idsToCheck = ['car-value','email','phone'];
+  const radioNamesToCheck = ['insurance','person'];
+  if (validateFields(idsToCheck,radioNamesToCheck) && validateRadioButtons('insurance') && validateRadioButtons('person')) {
+    // Изпълнете логиката за изчисление на цената тук
+  }
+});
+
+
+
+
+function validateFields(ids, radioNames = []) {
+    let isValid = true;
+
+    ids.forEach(id => {
+        const input = document.getElementById(id);
+        const errorElement = document.getElementById(`${id}-error`);
+        if (input.value.trim() === '') {
+            errorElement.textContent = 'Това поле е задължително!';
+            errorElement.style.display = 'block';
+            isValid = false;
+        } else {
+            errorElement.style.display = 'none';
+        }
+    });
+
+    radioNames.forEach(name => {
+        const radioButtons = document.getElementsByName(name);
+        const errorElement = document.getElementById(`${name}-error`);
+        if (![...radioButtons].some(radio => radio.checked)) {
+            errorElement.textContent = 'Моля, изберете опция!';
+            errorElement.style.display = 'block';
+            isValid = false;
+        } else {
+            errorElement.style.display = 'none';
+        }
+        if (!validateRadioButtons(name)) {
+            isValid = false;
+        }
+    });
+
+    return isValid;
+}
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+<script>
+    // Изпълнение на кода след зареждане на страницата
+    window.onload = function() {
+        let dataStorage = {};
+    
+        function parseData(csv){
+            var lines=csv.split("\n");
+            var result = [];
+            var headers=lines[0].split(",");
+      
+            for(var i=1;i<lines.length;i++){
+                var obj = {};
+                var currentline=lines[i].split(",");
+                for(var j=0;j<headers.length;j++){
+                    let value = currentline[j];
+                    if(typeof value === 'string'){
+                        value = value.replace(/["\[\]\\]/g, '');
+                    }
+                    obj[headers[j]] = value;
+                }
+                result.push(obj);
+            }
+            return result; //JavaScript object
+        }
+    
+        function fillSelectOptions(selectId, optionsArray){
+            let select = document.getElementById(selectId);
+            if (select) { // Проверяване дали елементът съществува
+                select.innerHTML = '';
+                optionsArray.forEach(option => {
+                    let opt = document.createElement('option');
+                    opt.value = option;
+                    opt.innerHTML = option;
+                    select.appendChild(opt);
+                });
+            }
+        }
+    
+        function fillYearSelect() {
+    let yearSelect = document.getElementById("year");
+    if (yearSelect) {
+        // Fetching years from CSV files and filling year select
+        for (let i = 1992; i <= 2024; i++) {
+            fetch(`csv/${i}.csv`)
+                .then(response => response.text())
+                .then(data => {
+                    dataStorage[i] = parseData(data);
+                    let opt = document.createElement('option');
+                    opt.value = i;
+                    opt.innerHTML = i;
+                    yearSelect.appendChild(opt);
+                })
+                .catch((error) => console.error('Error:', error));
+        }
+    }
+}
+
+
+
+    
+        function yearChanged(year){
+            let brands = [...new Set(dataStorage[year].map(item => item.make))];
+            fillSelectOptions('brand', brands);
+        }
+    
+        function brandChanged(year, brand){
+            let models = [...new Set(dataStorage[year].filter(item => item.make === brand).map(item => item.model))];
+            fillSelectOptions('car-models', models);
+        }
+    
+        function modelChanged(year, brand, model){
+            let types = [...new Set(dataStorage[year].filter(item => item.make === brand && item.model === model).map(item => item.body_styles))];
+            fillSelectOptions('car-type', types);
+        }
+    
+        // Populating year select on page load
+        fillYearSelect();
+    
+        // Adding event listeners
+        let yearSelect = document.getElementById('year');
+        let brandSelect = document.getElementById('brand');
+        let modelSelect = document.getElementById('car-models');
+    
+        if(yearSelect && brandSelect && modelSelect){ // Проверяване дали елементите съществуват
+            yearSelect.addEventListener('change', function(){
+            yearChanged(this.value);
+            chosenYear = this.value;
+
+    // Изчисляване на стойността в зависимост от избраната година
+    if (chosenYear === '2024' || chosenYear === '2023') {
+        chosenYearValue = 150;
+    } else if (chosenYear === '2022' || chosenYear === '2021' || chosenYear === '2020') {
+        chosenYearValue = 100;
+    } else {
+        chosenYearValue = 0;
+    }
+    
+    console.log(chosenYearValue);  // Извежда стойността на избраната година в конзолата
+});
+    
+            brandSelect.addEventListener('change', function(){
+                brandChanged(yearSelect.value, this.value);
+            });
+    
+            modelSelect.addEventListener('change', function(){
+                modelChanged(yearSelect.value, brandSelect.value, this.value);
+            });
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+<script>
+    function validatePhone() {
+        var phoneInput = document.getElementById('phone');
+        var phoneHelp = document.getElementById('phoneHelp');
+        
+        var re = /^\+[0-9]{2}[0-9]{3}[0-9]{3}[0-9]{4}$/;
+    
+        if (!re.test(phoneInput.value)) {
+            phoneHelp.textContent = 'Невалиден телефонен номер. Моля, следвайте формата: +359888123456';
+            phoneHelp.style.color = 'red';
+        } else {
+            phoneHelp.textContent = '';
+            phoneHelp.style.color = 'black';
+        }
+    }
+    </script>
+<script>
+    let isDroneWorkingElement = document.querySelector('input[name="drone"]:checked');
+let isDroneWorking = isDroneWorkingElement ? isDroneWorkingElement.value : 'no';
+    var autocomplete1 = new google.maps.places.Autocomplete(document.getElementById('address1'));
+    var autocomplete2 = new google.maps.places.Autocomplete(document.getElementById('address2'));
+    
+    var currentStep = 1;
+    var totalSteps = 3;
+        
+    document.getElementById('next-step-1').addEventListener('click', function() {
+    var address1 = document.getElementById('address1');
+    var address2 = document.getElementById('address2');
+   
+    address1.addEventListener('change', function() {
+  geocodeAddress(address1.value);
+});
+
+
+    
+    if (!address1.value || !address2.value) {
+        if (!address1.value) {
+            document.getElementById('address1-error').textContent = 'Моля, попълнете това поле.';
+            document.getElementById('address1-error').style.display = 'block';
+        }
+        if (!address2.value) {
+            document.getElementById('address2-error').textContent = 'Моля, попълнете това поле.';
+            document.getElementById('address2-error').style.display = 'block';
+        }
+    } else {
+        document.getElementById('address1-error').style.display = 'none';
+        document.getElementById('address2-error').style.display = 'none';
+        changeStep(1);
+    }
+});
+      
+    document.getElementById('calculate-cost').addEventListener('click', function() {
+        if (document.querySelector('input[name="drone"]:checked')) {
+            var isDroneOperational = document.querySelector('input[name="drone"]:checked').value;
+        
+            // Изчисляване на стойността тук...
+            var cost = calculateCost(isDroneOperational);
+            document.getElementById('result').textContent = 'Цената за доставка е ' + cost + ' BGN';
+        } else {
+            alert("Моля, изберете дали дрона е технически изправен или не, преди да продължите.");
+        }
+    });
+    
+    function changeStep(increment) {
+        var nextStep = currentStep + increment;
+        
+        if (nextStep > totalSteps) {
+            nextStep = totalSteps;
+        } else if (nextStep < 1) {
+            nextStep = 1;
+        }
+        
+        // Update step navigation bar
+        document.querySelector('.step.step-' + currentStep).classList.remove('active');
+        document.querySelector('.step.step-' + nextStep).classList.add('active');
+    
+        // Update step form
+        document.querySelector('.calculator-step.step-' + currentStep).classList.remove('active');
+        document.querySelector('.calculator-step.step-' + nextStep).classList.add('active');
+        
+        currentStep = nextStep;
+    }
+    
+    
+    function validateForm() {
+  // Вземете всички падащи менюта
+  let year = document.getElementById("year");
+  let brand = document.getElementById("brand");
+  let carModels = document.getElementById("car-models");
+  let carType = document.getElementById("car-type");
+
+  // Проверете дали всички падащи менюта са попълнени
+  if (year.value === "" || brand.value === "" || carModels.value === "" || carType.value === "") {
+    // Покажете съобщения за грешка
+    if (year.value === "") document.getElementById("year-error").innerText = "Моля, изберете година.";
+    if (brand.value === "") document.getElementById("brand-error").innerText = "Моля, изберете марка.";
+    if (carModels.value === "") document.getElementById("car-models-error").innerText = "Моля, изберете модел.";
+    if (carType.value === "") document.getElementById("car-type-error").innerText = "Моля, изберете категория.";
+
+    return false; // Върнете false, за да спрете прехода към следващата част
+  }
+
+  // Преминете към следващата част на калкулатора
+  return true;
+}
+
+// Добавете обработчик за събитие към бутона
+document.getElementById("next-step-2").addEventListener("click", function(e) {
+  if (!validateForm()) {
+    e.preventDefault(); // Спрете прехода, ако формата не е валидна
+  }
+});
+
+
+
+
+
+
+    
+
+    function calculateCost() {
+    let address = document.getElementById('address1').value;
+    let droneRadio = document.querySelector('input[name="drone"]:checked');
+    let droneWorking = droneRadio ? droneRadio.value : 'yes';
+    let additionalCost = droneWorking === 'no' ? 100 : 0;
+    let postcode2Element = document.getElementById("postcode2");
+    let postcode2 = Number(postcode2Element.value.replace(/\s/g, ''));
+    let postcodeValue = getPostcodeValue(postcode2);
+    let yearElement = document.getElementById("year");
+    let yearValue = Number(yearElement.options[yearElement.selectedIndex].value);
+    let carValueElement = document.getElementById("car-value");
+let carValue = Number(carValueElement.value.replace(/\s/g, ''));
+let carPriceScore;
+
+if (carValue > 50000) {
+    carPriceScore = 100;
+} else {
+    carPriceScore = 0;
+}
+let insuranceChoice = document.querySelector('input[name="insurance"]:checked').value;
+let insuranceCost = 0;
+
+if (insuranceChoice === "yes") {
+    insuranceCost = carValue * 0.0025;
+}
+
+
+    console.log("Address: " + address);
+    let cost = 0; // Проверете дали сте инициализирали променливата cost.
+
+
+  if (address.includes('Germany') || address.includes('Германия')) {
+    cost = 600;
+  } else if (address.includes('Bulgaria') || address.includes('България')) {
+    cost = 0;
+} else if (address.includes('Netherlands') || address.includes('Холандия')) {
+        cost = 650;
+    } else if (address.includes('Belgium') || address.includes('Белгия')) {
+        cost = 600;
+    } else if (address.includes('Spain') || address.includes('Испания')) {
+        cost = 650;
+    } else if (address.includes('France') || address.includes('Франция')) {
+        cost = 650;
+    } else if (address.includes('Portugal') || address.includes('Португалия')) {
+        cost = 850;
+    } else if (address.includes('Austria') || address.includes('Австрия')) {
+        cost = 550;
+    } else if (address.includes('Italy') || address.includes('Италия')) {
+        cost = 500;
+    } else if (address.includes('Luxembourg') || address.includes('Люксембург')) {
+        cost = 600;
+    } else if (address.includes('Denmark') || address.includes('Дания')) {
+        cost = 850;
+    } else if (address.includes('Switzerland') || address.includes('Швейцария')) {
+        cost = 850;
+    } else if (address.includes('Czech Republic') || address.includes('Чехия')) {
+        cost = 600;
+    } else if (address.includes('Slovakia') || address.includes('Словакия')) {
+        cost = 550;
+    } else if (address.includes('Slovenia') || address.includes('Словения')) {
+        cost = 550;
+    } else if (address.includes('Hungary') || address.includes('Унгария')) {
+        cost = 550;
+    } else if (address.includes('Poland') || address.includes('Полша')) {
+        cost = 750;
+    } else if (address.includes('Croatia') || address.includes('Хърватия')) {
+        cost = 550;
+    } else {
+        cost = 50;
+    }
+    
+    function getPostcodeValue(postcode) {
+    let value = 0;
+    if (postcode >= 4400 && postcode <= 4657) {
+        value = 0;
+    } else if (postcode >= 4700 && postcode <= 4999) {
+        value = 120;
+    } else if (postcode >= 5000 && postcode <= 5295) {
+        value = 90;
+    } else if (postcode >= 5300 && postcode <= 5481) {
+        value = 90;
+    } else if (postcode >= 5500 && postcode <= 5793) {
+        value = 80;
+    } else if (postcode >= 5800 && postcode <= 5999) {
+        value = 80;
+    } else if (postcode >= 6000 && postcode <= 6297) {
+        value = 70;
+    } else if (postcode >= 6300 && postcode <= 6714) {
+        value = 70;
+    } else if (postcode >= 6600 && postcode <= 6969) {
+        value = 120;
+    } else if (postcode >= 7000 && postcode <= 7174) {
+        value = 90;
+    } else if (postcode >= 7200 && postcode <= 7460) {
+        value = 120;
+    } else if (postcode >= 7500 && postcode <= 7694) {
+        value = 120;
+    } else if (postcode >= 7700 && postcode <= 7999) {
+        value = 120;
+    } else if (postcode >= 8000 && postcode <= 8689) {
+        value = 80;
+    } else if (postcode >= 8600 && postcode <= 8789) {
+        value = 80;
+    } else if (postcode >= 8800 && postcode <= 8999) {
+        value = 80;
+    } else if (postcode >= 9000 && postcode <= 9299) {
+        value = 120;
+    } else if (postcode >= 9298 && postcode <= 9699) {
+        value = 120;
+    } else if (postcode >= 9700 && postcode <= 9974) {
+        value = 120;
+    }
+    return value;
+}
+
+
+    cost += additionalCost + carPriceScore + chosenYearValue + postcodeValue  + insuranceCost; // Добавяме допълнителната стойност
+
+    let personType = document.querySelector('input[name="person"]:checked').value;
+
+if (personType === "no") {
+    cost *= 1.20; // Добавяме 20% към цената
+}
+
+console.log("Cost: " + cost);
+displayCost(cost);
+}
+
+// Показва стойността на 'cost' на потребителя
+function displayCost(cost) {
+    var resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "Цената за доставка е " + cost + " ЕВРО";
+}
+
+document.getElementById('calculate-cost').addEventListener('click', function() {
+  calculateCost();
+});
+let resultDiv = document.createElement("div"); // създаване на нов div елемент
+resultDiv.id = "result"; // задаване на ID
+let button = document.querySelector("button"); // намиране на бутона
+button.after(resultDiv); // вмъкване на новия div след бутона
+
+// Накрая на вашия код, добавете следното, за да се извика функцията, когато формата се изпраща
+document.getElementById('cost-calculator-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Предотвратява изпращането на формата
+    calculateCost();
+});
+    </script>
+</body>
+</html>
+
